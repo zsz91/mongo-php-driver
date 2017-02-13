@@ -42,7 +42,7 @@
 #include "php_bson.h"
 
 
-PHONGO_API zend_class_entry *php_phongo_subscriber_ce;
+zend_class_entry *php_phongo_subscriber_ce;
 
 /* {{{ MongoDB\Monitoring\Subscriber */
 static zend_function_entry php_phongo_subscriber_me[] = {
@@ -50,8 +50,7 @@ static zend_function_entry php_phongo_subscriber_me[] = {
 };
 /* }}} */
 
-/* {{{ PHP_MINIT_FUNCTION */
-PHP_MINIT_FUNCTION(Subscriber)
+void php_phongo_subscriber_init_ce(INIT_FUNC_ARGS) /* {{{ */
 {
 	zend_class_entry ce;
 	(void)type;(void)module_number;
@@ -59,9 +58,8 @@ PHP_MINIT_FUNCTION(Subscriber)
 	INIT_NS_CLASS_ENTRY(ce, "MongoDB\\Driver\\Monitoring", "Subscriber", php_phongo_subscriber_me);
 	php_phongo_subscriber_ce = zend_register_internal_interface(&ce TSRMLS_CC);
 
-	return SUCCESS;
-}
-/* }}} */
+	return;
+} /* }}} */
 
 /*
  * Local variables:

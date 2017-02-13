@@ -41,7 +41,7 @@
 #include "php_phongo.h"
 #include "php_bson.h"
 
-PHONGO_API zend_class_entry *php_phongo_commandfailedevent_ce;
+zend_class_entry *php_phongo_commandfailedevent_ce;
 
 zend_object_handlers php_phongo_handler_commandfailedevent;
 
@@ -77,9 +77,9 @@ ZEND_BEGIN_ARG_INFO_EX(ai_CommandFailedEvent_void, 0, 0, 0)
 ZEND_END_ARG_INFO()
 
 static zend_function_entry php_phongo_commandfailedevent_me[] = {
-	PHP_ME(Server, __construct, ai_CommandFailedEvent_void, ZEND_ACC_FINAL|ZEND_ACC_PRIVATE)
+	ZEND_NAMED_ME(__construct, PHP_FN(MongoDB_disabled___construct), ai_CommandFailedEvent_void, ZEND_ACC_PRIVATE|ZEND_ACC_FINAL)
 	PHP_ME(CommandFailedEvent, getServer, ai_CommandFailedEvent_void, ZEND_ACC_PUBLIC|ZEND_ACC_FINAL)
-	PHP_ME(Manager, __wakeup, ai_CommandFailedEvent_void, ZEND_ACC_PUBLIC)
+	ZEND_NAMED_ME(__wakeup, PHP_FN(MongoDB_disabled___wakeup), ai_CommandFailedEvent_void, ZEND_ACC_PUBLIC|ZEND_ACC_FINAL)
 	PHP_FE_END
 };
 
@@ -163,7 +163,7 @@ void php_phongo_commandfailedevent_init_ce(INIT_FUNC_ARGS) /* {{{ */
 	php_phongo_handler_commandfailedevent.offset = XtOffsetOf(php_phongo_commandfailedevent_t, std);
 #endif
 
-	return SUCCESS;
+	return;
 } /* }}} */
 
 

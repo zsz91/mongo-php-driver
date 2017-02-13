@@ -42,7 +42,7 @@
 #include "php_bson.h"
 
 
-PHONGO_API zend_class_entry *php_phongo_commandsubscriber_ce;
+zend_class_entry *php_phongo_commandsubscriber_ce;
 
 
 
@@ -71,8 +71,7 @@ static zend_function_entry php_phongo_commandsubscriber_me[] = {
 
 
 
-/* {{{ PHP_MINIT_FUNCTION */
-PHP_MINIT_FUNCTION(CommandSubscriber)
+void php_phongo_commandsubscriber_init_ce(INIT_FUNC_ARGS) /* {{{ */
 {
 	zend_class_entry ce;
 	(void)type;(void)module_number;
@@ -81,9 +80,8 @@ PHP_MINIT_FUNCTION(CommandSubscriber)
 	php_phongo_commandsubscriber_ce = zend_register_internal_interface(&ce TSRMLS_CC);
 	zend_class_implements(php_phongo_commandsubscriber_ce TSRMLS_CC, 1, php_phongo_subscriber_ce);
 
-	return SUCCESS;
-}
-/* }}} */
+	return;
+} /* }}} */
 
 
 
